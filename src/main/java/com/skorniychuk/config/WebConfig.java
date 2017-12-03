@@ -1,7 +1,11 @@
 package com.skorniychuk.config;
 
-/**
- * Created by ИРОЧКА on 03.12.2017.
- */
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+
+@Configuration
+@EnableWebMvc
+@ComponentScan(basePackages = "com.skorniychuk")
 public class WebConfig {
 }
