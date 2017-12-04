@@ -1,25 +1,26 @@
 package com.skorniychuk;
 
+import com.skorniychuk.config.WebConfig;
 import org.springframework.web.WebApplicationInitializer;
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import org.springframework.web.context.ContextLoaderListener;
+import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRegistration;
 
 public class ApplicationInitializer implements WebApplicationInitializer {
-    public void onStartup(javax.servlet.ServletContext servletContext) throws ServletException {
-    }
 
-//public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer{
-//
-//    protected Class<?>[] getRootConfigClasses() {
-//        return new Class<?>[0];
-//    }
-//
-//    protected Class<?>[] getServletConfigClasses() {
-//        return new Class<?>[0];
-//    }
-//
-//    protected String[] getServletMappings() {
-//        return new String[0];
-//    }
+    private final static String DISPATCHER = "dispatcher";
+
+    public void onStartup(ServletContext servletContext) throws ServletException {
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(WebConfig.class);
+        servletContext.addListener(new ContextLoaderListener(ctx));
+
+        ServletRegistration.Dynamic servlet = servletContext.addServlet(DISPATCHER, new DispatcherServlet(ctx));
+        servlet.addMapping("/");
+        servlet.setLoadOnStartup(1);
+    }
 }
