@@ -25,6 +25,7 @@ import java.util.Properties;
 @PropertySource("classpath: db.properties")
 @ComponentScan("com.skorniychuk")
 public class DataBaseConfig {
+
     @Resource
     private Environment enw;
 
