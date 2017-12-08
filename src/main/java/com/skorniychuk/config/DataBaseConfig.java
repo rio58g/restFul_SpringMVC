@@ -22,7 +22,7 @@ import java.util.Properties;
 @Configuration
 @EnableJpaRepositories("com.skorniychuk.repository")
 @EnableTransactionManagement
-@PropertySource("classpath: db.properties")
+@PropertySource("classpath:db.properties")
 @ComponentScan("com.skorniychuk")
 public class DataBaseConfig {
 
@@ -64,7 +64,7 @@ public class DataBaseConfig {
         ds.setTimeBetweenEvictionRunsMillis(Long.valueOf(enw.getRequiredProperty("db.timeBetweenEvictionRunsMillis")));
         ds.setMinEvictableIdleTimeMillis(Long.valueOf(enw.getRequiredProperty("db.minEvictableIdleTimeMillis")));
         ds.setTestOnBorrow(Boolean.valueOf(enw.getRequiredProperty("db.testOnBorrow")));
-        ds.setValidationQuery(enw.getRequiredProperty("db.validationQuer"));
+        ds.setValidationQuery(enw.getRequiredProperty("db.validationQuery"));
         return ds;
     }
 
