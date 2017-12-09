@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Entity
@@ -22,6 +24,7 @@ public class Remind {
     private String title;
 
     @Column (name = "remindDate", nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date remindDate;
 
     public Remind() {
